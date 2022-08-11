@@ -12,7 +12,7 @@ class Coche
 
     /**
      * Get the value of id
-     */ 
+     */
     public function getId()
     {
         return $this->id;
@@ -98,5 +98,14 @@ class Coche
         return $this;
     }
 
-  
+    public static function fromArray(array $coche): Coche
+    {
+        return  new self(
+            id: $coche['id'],
+            marca: $coche['marca'],
+            modelo: $coche['modelo'],
+            color: $coche['color'],
+            matricula: $coche['matricula']
+        );
+    }
 }

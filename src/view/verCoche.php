@@ -13,18 +13,24 @@
 <h1>Listado de Coches</h1>
 <table>
     <tr>
+        <th>Id</th>
         <th>Marca</th>
         <th>Modelo</th>
         <th>Color</th>
         <th>Matrícula</th>
     </tr>
 
-    <tr>
-        <td><?php echo  $row->getMarca() ?></td>
-        <td><?php echo  $row->getModelo() ?></td>
-        <td><?php echo  $row->getColor() ?></td>
-        <td><?php echo  $row->getMatricula() ?></td>
-    </tr>
+    <form action="/modifyCoche/<?php echo $row->getId() ?>" method="POST">
+        <tr>
+        <td><?php echo  $row->getId() ?></td>
+            <td> <input name="marca" type="text" value="<?php echo  $row->getMarca() ?>"></td>
+            <td> <input name="modelo" type="text" value="<?php echo  $row->getModelo() ?>"></td>
+            <td> <input name="color" type="text" value="<?php echo  $row->getColor() ?>"></td>
+            <td> <input name="matricula" type="text" value="<?php echo  $row->getMatricula() ?>"></td>
+        </tr>
+        <input type="submit" value="Modificar">
+    </form>
+
 
 </table>
 

@@ -42,4 +42,4 @@
 
 </table>
 <hr>
-<a href="/" style="background-color:orange;color:white;cursor:pointer">Crear nuevo coche</a>
+<a href="/crearCoche" style="background-color:orange;color:white;cursor:pointer">Crear nuevo coche</a>

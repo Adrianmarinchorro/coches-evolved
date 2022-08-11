@@ -15,13 +15,27 @@ use Symfony\Component\Routing\Matcher\UrlMatcher;
 $routeIndex = new Route('/', ['_controller' => [new CocheController, 'index']]);
 $routeCoches = new Route('/Coche/{id}', ['_controller' => [new CocheController, 'verCoche']]);
 $routeBorrarCoches = new Route('/borrarcoche/{id}', ['_controller' => [new CocheController, 'deleteCoche']]);
-$routeCrearCoche = new Route('/'); // la misma ruta metodo de GET y de POST.
+$routeCrearCoche = new Route(
+    path: '/crearCoche',
+    defaults: ['_controller' => [new CocheController, 'crearCoche']],
+    methods: 'GET'
+); // la misma ruta metodo de GET y de POST.
+$routeInsertCoche = new Route(
+    path: '/crearCoche',
+    defaults: ['_controller' => [new CocheController, 'insertCoche']],
+    methods: 'POST'
+);
+$routeModifyCoche =  new Route('/modifyCoche/{id}', ['_controller' => [new CocheController, 'modificarCoche']]);
+
 
 $routes = new RouteCollection();
 
-$routes->add('coche_ver', $routeCoches, -10);
+$routes->add('coche_ver', $routeCoches);
 $routes->add('coche_borrar', $routeBorrarCoches);
 $routes->add('coche_listar', $routeIndex);
+$routes->add('coche_crear', $routeCrearCoche);
+$routes->add('coche_insert', $routeInsertCoche);
+$routes->add('coche_modify', $routeModifyCoche);
 
 $context = new RequestContext();
 $context->fromRequest(Request::createFromGlobals());
