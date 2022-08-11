@@ -1,10 +1,20 @@
 <?php
 
 require __DIR__ . '/vendor/autoload.php';
+
+use Dotenv\Dotenv;
+use App\routes\web;
+use App\controller\CocheController;
+
+
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+
 require './src/routes/web.php';
 
-use App\controller\CocheController;
-use App\routes\web;
+
+
 
 
 //$controller = new CocheController;

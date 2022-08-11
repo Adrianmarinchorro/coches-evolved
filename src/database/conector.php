@@ -13,10 +13,10 @@ class conector{
     {
         return new Medoo([
             'type' => 'mysql',
-            'host' => 'db',
-            'database' => 'db',
-            'username' => 'db',
-            'password' => 'db'
+            'host' => $_SERVER['DB_HOST'], //$_SERVER[], $_ENV[] y getenv() ( esta ultima no es segura y las dos primeras son variables globales de php)
+            'database' => $_ENV['DB_NAME'],
+            'username' => $_ENV['DB_USER'],
+            'password' => $_ENV['DB_PASS'],
         ]);
     }
 
