@@ -32,14 +32,13 @@
             <td><?php echo  $row->getColor() ?></td>
             <td><?php echo  $row->getMatricula() ?></td>
             <td>
-                <a href="/Coche/<?php echo  $row->getId() ?>" style="background-color:green;color:white;cursor:pointer">Ver Coche</a>
-                <a href="/borrarcoche/<?php echo  $row->getId() ?>" style="background-color:red;color:white;cursor:pointer">Eliminar</a>
+                <a href="/coches/<?php echo  $row->getId() ?>" style="background-color:green;color:white;cursor:pointer">Ver Coche</a>
+                <a href="/coches/delete/<?php echo  $row->getId() ?>" style="background-color:red;color:white;cursor:pointer">Eliminar</a>
             </td>
         </tr>
     <?php
     endforeach;
     ?>
-
 </table>
 <hr>
-<a href="/crearCoche" style="background-color:orange;color:white;cursor:pointer">Crear nuevo coche</a>
+<a href="/coches/create" style="background-color:orange;color:white;cursor:pointer">Crear nuevo coche</a>

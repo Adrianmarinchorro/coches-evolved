@@ -8,15 +8,17 @@ use App\model\Coche;
 use Monolog\Handler\StreamHandler;
 use Symfony\Component\HttpFoundation\Response;
 use App\database\conector;
+use Medoo\Medoo;
 
 class CocheController
 {
 
     var $coches;
-
+    private Medoo $dbCon;
 
     function __construct()
     {
+        $this->dbCon = (new conector)();
     }
 
     public function index()
@@ -29,8 +31,8 @@ class CocheController
         $log->warning('He entrado en el controlador');
         $log->error('Ha habido un error.');
 
-        $dbConection = (new conector)();
-        $coches = $dbConection->select('coche', [
+      
+        $coches = $this->dbCon->select('coche', [
             'id',
             'marca',
             'modelo',
@@ -47,36 +49,28 @@ class CocheController
         require("src/view/listadoCoches.php");
     }
 
-    public function crearCoche()
+    public function create()
     {
-
-
         require "./src/view/crearCoche.php";
     }
 
-    public function insertCoche()
+    public function insert()
     {
-        $dbConection = (new conector)();
-        $var = $dbConection->insert('coche', [
+        $var = $this->dbCon->insert('coche', [
             'marca' => $_POST['marca'],
             'modelo' => $_POST['modelo'],
             'color' => $_POST['color'],
             'matricula' => $_POST['matricula']
         ]);
 
-        dd($var);
-
         sleep(3);
 
         header('Location: /');
     }
 
-    public function deleteCoche(int $id)
+    public function delete(int $id)
     {
-
-        $dbConection = (new conector)();
-
-        $dbConection->delete('coche', ['id' => $id]);
+        $this->dbCon->delete('coche', ['id' => $id]);
 
         echo 'Se ha borrado correctamente el coche con id: ' . $id;
 
@@ -85,13 +79,9 @@ class CocheController
         header('Location: /');
     }
 
-    public function modificarCoche(int $id)
+    public function modify(int $id)
     {
-
-        $dbConection = (new conector)();
-
-
-        $var = $dbConection->update(
+        $var = $this->dbCon->update(
             'coche',
             [
                 'marca' => $_POST['marca'],
@@ -116,12 +106,9 @@ class CocheController
 
     }
 
-    public function verCoche(int $id)
+    public function show(int $id)
     {
-
-        $dbConection = (new conector)();
-
-        $car =  $dbConection->select(
+        $car =  $this->dbCon->select(
             'coche',
             '*',
             ['id' => $id]

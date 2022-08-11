@@ -20,7 +20,7 @@
         <th>Matrícula</th>
     </tr>
 
-    <form action="/modifyCoche/<?php echo $row->getId() ?>" method="POST">
+    <form action="/coches/modify/<?php echo $row->getId() ?>" method="POST">
         <tr>
         <td><?php echo  $row->getId() ?></td>
             <td> <input name="marca" type="text" value="<?php echo  $row->getMarca() ?>"></td>

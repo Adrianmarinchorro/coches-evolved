@@ -3,7 +3,7 @@
 </head>
 
 <body>
-    <form action="/crearCoche" method="POST">
+    <form action="/coches/create" method="POST">
         <input name="marca" placeholder="Marca" type="text">
         <input name="modelo" placeholder="Modelo" type="text">
         <input name="color" placeholder="Color" type="text">
