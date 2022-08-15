@@ -8,7 +8,9 @@ use App\model\Coche;
 use Monolog\Handler\StreamHandler;
 use Symfony\Component\HttpFoundation\Response;
 use App\database\conector;
+use Exception;
 use Medoo\Medoo;
+use Symfony\Component\HttpFoundation\Request;
 
 class CocheController
 {
@@ -19,11 +21,12 @@ class CocheController
     function __construct()
     {
         $this->dbCon = (new conector)();
+
+
     }
 
     public function index()
     {
-
 
         $log = new Logger('name');
         $log->pushHandler(new StreamHandler('./logs/01.log', Level::Warning));
