@@ -11,6 +11,15 @@
 </style>
 
 <h1>Listado de Coches</h1>
+<head>
+    <tittle>Filtrar por marca:</tittle>
+</head>
+<body>
+    <form action="/coches/filter" method="POST">
+        <input name="marca" placeholder="Marca" type="text">
+        <input type="submit" value="Filtrar">
+    </form>
+</body>
 <table>
     <tr>
         <th>Id</th>
@@ -24,7 +33,6 @@
     <?php
     foreach ($rowset as $row) :
     ?>
-
         <tr>
             <td><?php echo  $row->getId() ?></td>
             <td><?php echo  $row->getMarca() ?></td>

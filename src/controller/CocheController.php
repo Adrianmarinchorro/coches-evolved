@@ -109,6 +109,39 @@ class CocheController
 
     }
 
+    public function filter(){
+        require "./src/view/filtradoCoche.php";
+    }
+
+    public function filterList(Request $request){
+
+        $cars =  $this->dbCon->select(
+            'coche',
+            '*',
+            ['marca' => $request->request->get('marca', '')],
+        );
+
+        //dd($request->);
+
+        if (isset($cars)) { // comprueba si un array esta instanciado y con datos
+
+         //dd($car);
+
+            foreach ($cars as $car) {
+                $this->coches[] = Coche::fromArray($car); // llamar estaticamnente un metodo
+                
+            }
+    
+            $rowset = $this->coches;
+
+           
+
+            require("src/view/listadoCoches.php");
+        }
+    
+
+    }
+
     public function show(int $id)
     {
         $car =  $this->dbCon->select(
@@ -116,7 +149,6 @@ class CocheController
             '*',
             ['id' => $id]
         );
-
 
         if (isset($car)) { // comprueba si un array esta instanciado y con datos
 
